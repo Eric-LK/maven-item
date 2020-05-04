@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f6bccf4-6e15-4bcf-bd1c-12090f3d09e7" name="Default Changelist" comment="" />
+    <list default="true" id="0f6bccf4-6e15-4bcf-bd1c-12090f3d09e7" name="Default Changelist" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;pom.xml">
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="E:/项目/ITOO/itoo-exam-test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -71,10 +73,29 @@
       <option name="presentableId" value="Default" />
       <updated>1588580786044</updated>
       <workItem from="1588580789515" duration="147000" />
+      <workItem from="1588581296125" duration="765000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="560" y="68" key="CommitChangelistDialog2" timestamp="1588581459681">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="560" y="68" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1588581459681" />
+    <state x="184" y="87" key="MergeDialog" timestamp="1588581440138">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="184" y="87" key="MergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1588581440138" />
+    <state x="669" y="240" key="MultipleFileMergeDialog" timestamp="1588581442821">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="669" y="240" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1588581442821" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1588581333139">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1588581333139" />
   </component>
 </project>
