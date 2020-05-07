@@ -17,6 +17,11 @@
     </parent>
 
     <dependencies>
+        <!--测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
 
         <!--swagger-->
         <dependency>
@@ -38,6 +43,8 @@
     </dependencies>
 
     <build>
+        <!--项目构建之后的名字-->
+        <finalName>test</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
