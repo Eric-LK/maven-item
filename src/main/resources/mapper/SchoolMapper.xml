@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.mybatis.dao.SchoolMapper">
+
+    <select id="selectSchoolById" resultType="com.eric.mybatis.model.School">
+        select id,name from school where id =#{id}
+    </select>
+
+    <resultMap id="schoolMap" type="com.eric.mybatis.model.School">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!-- 结果集中有个list -->
+        <collection property="personList" ofType="com.eric.mybatis.model.Person">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="sex" property="sex"/>
+            <result column="age" property="age"/>
+        </collection>
+    </resultMap>
+
+    <!--测试resultMap中的collection-->
+    <select id="selectSchoolCollectionByName" resultMap="schoolMap">
+        select p.id,p.name,p.sex,p.age,s.id,s.name
+        from school s
+        left join person p
+        on s.person_id = p.school_id
+        where s.name = #{name}
+    </select>
+
+    <resultMap id="schoolMapFenBu" type="com.eric.mybatis.model.School">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!-- 结果集中有个list
+         分步查询：
+         property：表示父实体的属性实体的名字
+
+         fetchType: lazy:延迟加载；eager：不延迟加载
+
+         <collection select="com.eric.mybatis.dao.PersonMapper.selectPerson"
+                    property="personList" column="id" fetchType="lazy"/>
+         -->
+        <!--
+            <discriminator javaType="string" >
+                <case value=""></case>
+            </discriminator>
+
+            鉴别器 ， 就是不同类型做不同操作
+            <case>
+            value：是什么
+            resultType: 返回类型
+            <case> 里边放 <association> 或是 <collection>
+        -->
+    </resultMap>
+
+    <select id="selectSchoolFenBu" resultMap="schoolMapFenBu">
+        select * from school where id = #{id}
+    </select>
+
+</mapper>

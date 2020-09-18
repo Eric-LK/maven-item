@@ -1,6 +1,60 @@
 server:
-  port:  8020
+  port: 8012
 
 spring:
   application:
-    name: jenkins-test
+    name: test
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.97.98.67:3306/test
+    username: root
+    password: root
+  redis:
+    host: 39.97.98.67
+    port: 6333
+    password:
+    database: 0
+    timeout: 300000ms #连接超时
+    jedis:
+      pool:
+        max-active: 8 #连接池最大的连接数
+        max-wait: -1ms #连接池最大的阻塞等待时间（负值表示没有限制）
+        max-idle: 500 #连接池最大的空闲连接
+  rabbitmq:
+    host: 39.97.98.67
+    port: 5672
+    username: eric
+    password: eric
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        retry:
+          enabled: true
+
+
+rabbit-mq:
+  person:
+    queue:
+      name: queue-2
+      durable: true
+    exchange:
+      name: exchange-2
+      durable: true
+      type: topic
+      ignore: true
+    key: spring.*
+
+
+# 设置
+  mybatis mapper路径
+mybatis:
+  mapper-locations: classpath*:/mybatis/**/*.xml
+  executor-type: reuse
+
+# 设置日志级别
+logging:
+  level:
+    com.example.boot.dao: debug

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.mybatis.dao.PersonMapper">
+    <!--
+    <cache readOnly="false" eviction="LRU" flushInterval="50000"/>
+
+    开启二级缓存  （配置文件中，默认是开启二级缓存的）
+    eviction:缓存回收策略
+        LRU：最近最少使用（默认）
+        FIFO：先进先出
+        SOFT：软引用
+        WEAK：弱引用
+    flushInterval：缓存刷新时间（毫秒）
+    readOnly：是否只读
+    size：指定缓存多大的数据
+    -->
+
+    <!-- zhu shi
+        parameterType="string" resultMap="ResultQueryMap"
+    -->
+
+    <!--级联属性-->
+    <resultMap id="ResultQueryMap" type="com.eric.mybatis.model.Person" >
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="school_id" property="school.id"/>
+        <!--association：可以指定联合的javabean对象
+            property: 可以指定哪个属性是联合对象
+            javaType：指定这个属性的对象类型（不能省略）
+
+            <association property="school" javaType="com.eric.mybatis.model.School" >
+                <id column="school_id" property="id"/>
+                <result column="school_name" property="name"/>
+            </association>
+        -->
+        <!--select: 适用select指定的方法（传入column指定的这列参数的值）查出对象，并封装给property这个属性）
+            column: 指定哪个值传入到这个方法中
+        -->
+        <association property="school" javaType="com.eric.mybatis.model.School"
+                     select="com.eric.mybatis.dao.SchoolMapper.selectSchoolById" column="sId">
+        </association>
+    </resultMap>
+
+    <!--测试 association 标签的 分布查询的方法-->
+    <select id="selectPersonSchool" resultMap="ResultQueryMap">
+        select id,name,age,sex,school_id sId
+        from person
+        where id = #{id}
+    </select>
+
+
+    <select id="selectPerson" resultType="com.eric.mybatis.model.Person">
+        select
+        /* 引用自定义sql片段 */
+        <include refid="myColumn"/>
+        from  person
+        where id = #{id}
+    </select>
+
+    <select id="selectPersonMapKey" resultType="java.util.Map">
+        select * from person where name like #{name}
+    </select>
+
+    <!--  主键自增策略： useGeneratedKeys="true" keyProperty="id" -->
+    <insert id="insertPerson" parameterType="com.eric.mybatis.model.Person"
+            useGeneratedKeys="true" keyProperty="id" >
+        /* 在添加执行之前执行，适用于oracle这种数据库，没有主键自增的功能*/
+        <selectKey keyProperty="age" order="BEFORE" resultType="Integer">
+            select age from person limit 1
+        </selectKey>
+        insert into person (name,sex) values (#{name},${sex});
+    </insert>
+
+    <!--自定义sql片段-->
+    <sql id="myColumn">
+        name,age,sex
+    </sql>
+
+    <!--动态sql-->
+    <select id="selectPersonByIdAndAge" resultType="hashmap">
+        select * from person
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="age!=null and age.trim()!=null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+
+    <update id="updatePerson" parameterType="com.eric.mybatis.model.Person">
+        update person
+        set
+        `name` = #{person.name},
+        age = #{person.age}
+        where
+        id = #{person.id}
+    </update>
+</mapper>
