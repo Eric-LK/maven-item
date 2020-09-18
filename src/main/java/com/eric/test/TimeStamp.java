@@ -1,6 +1,5 @@
 package com.eric.test;
 
-import org.junit.Test;
 
 /**
  * @author liuBing
