@@ -29,7 +29,7 @@ public class Consumer {
     }
 
 
-    @RabbitListener(queues = "test007")
+    @RabbitListener(queues = "test01")
     public void process(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
         log.info("receive: " + new String(message.getBody()));

@@ -3,15 +3,16 @@ server:
 
 spring:
   application:
-    name: test
+    name: maven-test
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.97.98.67:3306/test
+    # driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.97.98.67:8001/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
   redis:
     host: 39.97.98.67
-    port: 6333
+    port: 6379
     password:
     database: 0
     timeout: 300000ms #连接超时
@@ -49,7 +50,7 @@ rabbit-mq:
 
 
 # 设置
-  mybatis mapper路径
+# mybatis mapper路径
 mybatis:
   mapper-locations: classpath*:/mybatis/**/*.xml
   executor-type: reuse
