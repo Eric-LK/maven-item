@@ -9,6 +9,8 @@ public class TimeStamp {
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
         System.out.println(System.currentTimeMillis() + 86400000L * 31);
+        //System.out.println(System.currentTimeMillis() + 86400000L * 62);
+        System.out.println(System.currentTimeMillis() - 86400000L * 30);
     }
 
 }
