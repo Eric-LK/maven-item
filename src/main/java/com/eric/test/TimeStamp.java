@@ -11,6 +11,11 @@ public class TimeStamp {
         System.out.println(System.currentTimeMillis() + 86400000L * 31);
         //System.out.println(System.currentTimeMillis() + 86400000L * 62);
         System.out.println(System.currentTimeMillis() - 86400000L * 30);
+
+        Long a = 100L;
+        Integer b = 2000;
+
+        System.out.println(b - Integer.parseInt(a.toString()));
     }
 
 }
