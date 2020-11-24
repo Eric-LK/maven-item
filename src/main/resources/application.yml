@@ -58,4 +58,4 @@ mybatis:
 # 设置日志级别
 logging:
   level:
-    com.example.boot.dao: debug
+    com.eric.mybatis.dao: debug

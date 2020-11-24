@@ -3,6 +3,7 @@ package com.eric.test;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.math.BigDecimal;
 import java.util.TreeSet;
 
 /**
@@ -11,10 +12,10 @@ import java.util.TreeSet;
 public class RandomTest {
 
     public static void main(String[] args) {
-        /*for (int i = 0 ; i <5;i++){
-            System.out.println(RandomStringUtils.randomAlphanumeric(8));
+        for (int i = 0 ; i < 20;i++){
+            System.out.println(RandomStringUtils.randomAlphanumeric(16));
         }
-
+        /*
         for (int i = 0 ; i <5;i++){
             System.out.println(RandomStringUtils.randomPrint(8));
         }
@@ -31,5 +32,9 @@ public class RandomTest {
         }
         System.out.println(treeSet.size());
         System.out.println(IdWorker.getId());
+
+        BigDecimal a = BigDecimal.valueOf(2.111);
+        System.out.println(a.toString());
+
     }
 }
