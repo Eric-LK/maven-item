@@ -1,21 +1,30 @@
 package com.eric.test;
 
 
+import javax.xml.crypto.Data;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+
 /**
  * @author liuBing
  */
 public class TimeStamp {
 
     public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis());
-        System.out.println(System.currentTimeMillis() - 86400000L * 1);
-        //System.out.println(System.currentTimeMillis() + 86400000L * 62);
-        System.out.println(System.currentTimeMillis() - 86400000L * 30);
 
-        Long a = 100L;
-        Integer b = 2000;
+        LocalDate ld1 = LocalDate.now().minusDays(1);
+        LocalDate with = ld1.with(DayOfWeek.MONDAY);
 
-        System.out.println(b - Integer.parseInt(a.toString()));
+        System.out.println(with);
+
+        LocalDate monday1 =ld1.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        System.out.println(monday1);
+
+        LocalDate ld = LocalDate.now();
+        LocalDate monday =ld.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        System.out.println(monday);
+
     }
 
 }

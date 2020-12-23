@@ -1,19 +1,18 @@
 package com.eric.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.eric.entity.Person;
-import com.eric.utils.RedisUtil;
+import com.eric.test.entity.Fileinfo;
+import com.eric.test.entity.NimRecordVideoDto;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,60 +25,96 @@ import java.util.List;
 public class RedisController {
 
     @Autowired
-    RedisUtil redisUtil;
+    //RedisUtil redisUtil;
 
-    @ApiOperation("setJsonString")
-    @GetMapping("/set-json-string/{jsonString}")
-    public boolean setJsonString(@PathVariable String jsonString){
+    Gson gson = new Gson();
+//
+//    @ApiOperation("setJsonString")
+//    @GetMapping("/setJsonString")
+//    public boolean setJsonString() {
+//
+//        List<Person> personList = new ArrayList<>() {{
+//            add(Person.builder().id(1L).name("eric").build());
+//            add(Person.builder().id(2L).name("eric").age(12).build());
+//            add(Person.builder().id(3L).name("eric").age(12).build());
+//        }};
+//
+//        /*  ---------------- fastJson ----------------*/
+//
+//        // json type: Person
+//        redisUtil.set("personListJsonPerson", personList);
+//
+//        // json type: JsonObject
+//        redisUtil.set("personListJsonObject", JSONArray.parseArray(JSON.toJSONString(personList)));
+//
+//        // json string
+//        redisUtil.set("personListJsonString", JSON.toJSONString(personList));
+//
+//
+//
+//
+//        /*---------------------- gson ---------------------------*/
+//
+//        Person person = Person.builder().id(1L).age(12).name("123").build();
+//
+//        redisUtil.set("gson", gson.toJson(person));
+//
+//
+//        return true;
+//    }
+//
+//    @GetMapping("/getPersonListJsonPerson")
+//    public List<Person> getPersonListJsonPerson() {
+//        String personListJsonPerson = redisUtil.get("personListJsonPerson").toString();
+//        return JSONArray.parseArray(personListJsonPerson,Person.class);
+//    }
+//
+//    @GetMapping("/getPersonListJsonObject")
+//    public List<Person> getPersonListJsonObject() {
+//        String personListJsonPerson = redisUtil.get("personListJsonObject").toString();
+//        return JSONArray.parseArray(personListJsonPerson,Person.class);
+//    }
+//
+//    @GetMapping("/getPersonListJsonString")
+//    public List<Person> getPersonListJsonString() {
+//        String personListJsonPerson = redisUtil.get("personListJsonString").toString();
+//        return JSONArray.parseArray(personListJsonPerson,Person.class);
+//    }
+//
+//    @GetMapping("/getJsonStringToPersonListByGson")
+//    public List<Person> getJsonStringToPersonListByGson() {
+//
+//        Person[] persons = gson.fromJson(redisUtil.get("personListJsonString").toString(), Person[].class);
+//
+//        System.out.println(Arrays.toString(persons));
+//
+//        List<Person> personList =
+//                gson.fromJson(redisUtil.get("personListJsonString").toString(), new TypeToken<List<Person>>() {
+//                }.getType());
+//
+//        System.out.println(personList);
+//
+//        return personList;
+//    }
+//
+//
+//    @GetMapping("/getPerson")
+//    public Person getPerson() {
+//        String personJsonString = redisUtil.get("person").toString();
+//        return gson.fromJson(personJsonString,Person.class);
+//    }
+//
+//    @GetMapping("/getPersonList")
+//    public List<Person> getPersonList(){
+//        String personListJsonString =gson.toJson(redisUtil.get("personListJsonPerson"));
+//        return JSONArray.parseArray(personListJsonString,Person.class);
+//    }
 
-        /*List<Integer> stringList = new ArrayList<>(){{
-            add(123);
-            add(456);
-        }};
+    @PostMapping("/getTest")
+    public List<Fileinfo> fileinfoTest(@RequestBody String param){
+        NimRecordVideoDto nimRecordVideoDto = gson.fromJson(param,NimRecordVideoDto.class);
 
-        redisUtil.set("jsonString",JSON.toJSONString(stringList));
-        redisUtil.set("json",JSON.toJSON(stringList));*/
-
-        List<Person> people = new ArrayList<>(){{
-            add(Person.builder().id(1L).name("eric").age(12).build());
-            add(Person.builder().id(2L).name("eric").age(12).build());
-            add(Person.builder().id(3L).name("eric").age(12).build());
-        }};
-
-        redisUtil.set("person",people);
-
-        redisUtil.set("personJsonString",JSON.toJSONString(people));
-
-
-        // redisUtil.set("personList",JSONArray.parseArray(people));
-        redisUtil.set("personList",JSONArray.parseArray(JSON.toJSONString(people)));
-
-        // log.info(JSON.toJSONString(stringList));
-        // log.info(JSON.toJSON(stringList).toString());
-        return true;
-    }
-
-    @GetMapping("/get-json-string")
-    public String getJsonString(){
-        return redisUtil.get("jsonString").toString();
-    }
-
-    @GetMapping("/get-json")
-    public String getJson(){
-        return redisUtil.get("json").toString();
-    }
-
-    @GetMapping("/getPersonList")
-    public List<Person> getPersonList(){
-        return (List<Person>) redisUtil.get("personList");
-       // return JSONArray.parseArray(redisUtil.get("personList").toString(),Person.class);
-    }
-
-    @GetMapping("/getPerson")
-    public List<Person> getPerson(){
-
-        return (List<Person>) JSON.toJSON(redisUtil.get("person")) ;
-
-       // return JSONArray.parseArray(redisUtil.get("person").toString(),Person.class);
+        List<Fileinfo> fileinfos = JSONArray.parseArray(nimRecordVideoDto.getFileinfo(),Fileinfo.class);
+        return fileinfos;
     }
 }

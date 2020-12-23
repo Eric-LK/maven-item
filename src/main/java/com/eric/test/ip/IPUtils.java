@@ -2,6 +2,7 @@ package com.eric.test.ip;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
+import com.maxmind.geoip2.model.AsnResponse;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.*;
@@ -33,7 +34,8 @@ public class IPUtils {
 
         try {
             //绝对路径读取文件方式
-            database = new File("/Users/bssm/IdeaProjects/maven-item/GeoLite2-Country.mmdb");
+            // /Users/bssm/yuelanProject/maven-item/GeoLite2-ASN.mmdb
+            database = new File("/Users/bssm/yuelanProject/maven-item/Country.mmdb");
 
             // 通过 InputStream 流式读取文件，目的解决无法通过File方式读取jar包内的文件的问题·1
             // database = getFile("GeoLite2-Country.mmdb","GeoLite2-Country.mmdb");
@@ -57,8 +59,16 @@ public class IPUtils {
 
         try {
             InetAddress ipAddress = InetAddress.getByName(ip);
-            CountryResponse response = reader.country(ipAddress);
-            Country country = response.getCountry();
+             CountryResponse response = reader.country(ipAddress);
+
+            // AsnResponse asn = reader.asn(ipAddress);
+
+
+
+            //  CityResponse city = reader.city(ipAddress);
+            // Country country = city.getCountry();
+
+             Country country = response.getCountry();
             /*Subdivision subdivision = response.getMostSpecificSubdivision();
             City city = response.getCity();
             Postal postal = response.getPostal();
@@ -75,9 +85,7 @@ public class IPUtils {
             //纬度
             msg.setLatitude(location.getLatitude());*/
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (GeoIp2Exception e) {
+        } catch (IOException | GeoIp2Exception e) {
             e.printStackTrace();
         }
 

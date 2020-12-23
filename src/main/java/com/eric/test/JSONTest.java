@@ -1,10 +1,13 @@
 package com.eric.test;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,5 +29,15 @@ public class JSONTest {
         System.out.println(JSON.toJSONString(stringList));
         System.out.println(JSON.toJSON(stringList));
 
+    }
+
+
+    public void jacksonTest() throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HashMap<String,Object> map = new HashMap<>();
+
+        objectMapper.writeValueAsString(map);
     }
 }
