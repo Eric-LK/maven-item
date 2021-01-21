@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.eric.mybatis.dao.PersonMapper">
+<mapper namespace="com.eric.dao.PersonMapper">
     <!--
     <cache readOnly="false" eviction="LRU" flushInterval="50000"/>
 
@@ -40,7 +40,7 @@
             column: 指定哪个值传入到这个方法中
         -->
         <association property="school" javaType="com.eric.mybatis.model.School"
-                     select="com.eric.mybatis.dao.SchoolMapper.selectSchoolById" column="sId">
+                     select="com.eric.dao.SchoolMapper.selectSchoolById" column="sId">
         </association>
     </resultMap>
 
