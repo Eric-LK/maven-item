@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .apiInfo(getApiInfo())
                 .select()
                 //设置basePackage会将包下的所有被@Api标记类的所有方法作为api
-                .apis(RequestHandlerSelectors.basePackage("com.example.boot.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.eric"))
                 //只有标记了@ApiOperation的方法才会暴露出给swagger
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())

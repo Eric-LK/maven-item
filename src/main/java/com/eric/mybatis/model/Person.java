@@ -8,8 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-@ApiModel(value = "个人信息表") // 用于swagger显示
 // @TableName(value = "person") // 对应数据库的表名,名字一致可以不写
+
+@ApiModel(value = "个人信息表") // 用于swagger显示
 @NoArgsConstructor // 自动生成无参数构造函数
 @AllArgsConstructor // 自动生成全参数构造函数
 @Data // 自动为所有字段添加@ToString, @EqualsAndHashCode, @Getter方法，为非final字段添加@Setter

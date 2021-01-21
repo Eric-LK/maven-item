@@ -1,4 +1,4 @@
-package com.eric.mybatis.dao;
+package com.eric.dao;
 
 import com.eric.mybatis.model.School;
 import org.springframework.stereotype.Repository;
