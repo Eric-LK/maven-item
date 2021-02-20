@@ -4,6 +4,8 @@ package com.eric.dao;
 import com.eric.mybatis.model.Person;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -33,4 +35,7 @@ public interface PersonMapper {
      Map selectPersonByIdAndAge(@Param("id") String id,@Param("age") String age);
 
      Boolean updatePerson(@Param("person") Person person);
+
+     @Update(" update user set name = #{userName} where id = #{userId}")
+     int updateUserName(Integer userId,String userName);
 }

@@ -1,4 +1,4 @@
-package com.eric.test.ip;
+package com.eric.ip;
 
 import lombok.Data;
 

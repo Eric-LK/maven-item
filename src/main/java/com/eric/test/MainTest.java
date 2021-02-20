@@ -1,12 +1,17 @@
 package com.eric.test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.eric.test.entity.DataTest;
+
+import com.eric.entity.Person;
+import lombok.SneakyThrows;
+import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -15,9 +20,7 @@ import java.net.URLConnection;
  */
 public class MainTest {
     public static void main(String[] args) {
-        /*DataTest dataTest = new DataTest();
-        dataTest.setId("123");
-        System.out.println(dataTest.toString());*/
+
 
 
         RestTemplate restTemplate = new RestTemplate();
@@ -25,14 +28,12 @@ public class MainTest {
         String url = "http://ip.qq.com/cgi-bin/searchip?searchip1=";
         String ip = "103.145.184.106";
 
-        String result = restTemplate.postForObject(url + ip,null, String.class);
+        String result = restTemplate.postForObject(url + ip, null, String.class);
 
-         JSONObject json = JSONObject.parseObject(result);
+        JSONObject json = JSONObject.parseObject(result);
 
-         System.out.println(json);
+        System.out.println(json);
 
-        // getAddressByIP getAddressByIP = new getAddressByIP();
-        // System.out.println(ipTest());
     }
 
     public static String ipTest() {
@@ -60,4 +61,27 @@ public class MainTest {
         }
     }
 
+
+    @SneakyThrows
+    public <T> T leaveMark(T t) {
+        Class<? extends T> aClass = (Class<T>) t.getClass();
+        Constructor<? extends T> constructor = aClass.getDeclaredConstructor();
+        T o = constructor.newInstance();
+
+        Method setSerialMethod = aClass.getMethod("setAge",Integer.class);
+
+        setSerialMethod.invoke(o,123);
+
+        return o;
+    }
+
+    @Test
+    public  void testTemp(){
+        Person person = new Person();
+        System.out.println(person.toString());
+
+        Person newPerson = leaveMark(person);
+
+        System.out.println(newPerson.toString());
+    }
 }

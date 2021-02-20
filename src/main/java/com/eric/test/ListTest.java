@@ -1,10 +1,18 @@
 package com.eric.test;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -15,60 +23,43 @@ public class ListTest {
 
     public static void main(String[] args) {
 
-        /*List<Integer> stringList = new ArrayList<>(){{
-            add(123);
-            add(456);
-            add(1);
-            add(2);
-        }};
+        List<String > list = new ArrayList<>();
+        list.add("1");
+        list.add("4");
 
-        List<Integer> a = stringList.subList(0,stringList.size());
+        if ((list.contains("1") || list.contains("3")) && !list.contains("2")) System.out.println(" 奥利给 ");
+        else System.out.println(" 2 ");
 
-        System.out.println(a);*/
-
-        for(int i = 0 ; i < 30 ; i++){
-            System.out.println((int)(19 + Math.random() * (30 - 19 +1)));
-        }
-
-
-
-
-        /*List<Integer> listOne = stringList.stream().filter(x -> x > 200).collect(Collectors.toList());
-        System.out.println(listOne);
-
-        List<Integer> listTwo = stringList.stream().filter(x -> x > 2000).collect(Collectors.toList());
-
-
-        System.out.println(listTwo);
-        listTwo.forEach(x -> {
-            if (x > 0){
-                return;
-            }
-            System.out.println(x);
-        });*/
 
     }
 
 
+    /**
+     * 根据某个字段去重
+     */
     @Test
-    public void test(){
-        /*List<String> a = new ArrayList<>(){{
-            add("123");
-        }};
-        List<Integer> stringList = new ArrayList<>(){{
-            add(123);
-            add(456);
-        }};
-        a.forEach(x -> stringList.forEach(y ->{
-            System.out.println(System.currentTimeMillis());
-            System.out.println(y);
-            stringList.remove(y);
-        }));
-*/
+    public void test() {
+        List<User> lists = new ArrayList<>(
+                Arrays.asList(
+                        new User("zhaoliu", "女", 27, 168),
+                        new User("xiaohong", "女", 28, 163),
+                        new User("xiaoming", "男", 29, 178),
+                        new User("lisi", "女", 27, 162)
+                )
+        );
+        List<User> disUsers = lists.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(User::getSex))), ArrayList::new)
+        );
+        System.out.println("根据对象中的某个字段进行去重操作" + disUsers);
 
-        String[] aaa = "".split(",");
-        List<String> listS  = Arrays.asList(aaa);
-        System.out.println(listS);
-
+    }
+    @Data
+    @AllArgsConstructor
+    static class User{
+        private String name;
+        private String sex;
+        private Integer age;
+        private Integer height;
     }
 }

@@ -1,9 +1,7 @@
-package com.eric.test.ip;
+package com.eric.ip;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.AsnResponse;
-import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.*;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +9,6 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.util.logging.Logger;
 
 /**
  * @author liuBing

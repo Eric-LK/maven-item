@@ -1,4 +1,4 @@
-package com.eric.test.ip;
+package com.eric.ip;
 
 import java.util.ArrayList;
 import java.util.List;

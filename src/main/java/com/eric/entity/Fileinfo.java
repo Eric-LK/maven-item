@@ -1,4 +1,4 @@
-package com.eric.test.entity;
+package com.eric.entity;
 
 import lombok.Data;
 import lombok.Getter;

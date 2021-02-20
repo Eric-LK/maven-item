@@ -1,4 +1,4 @@
-package com.eric.test.letcode;
+package com.eric.letcode;
 
 import java.util.ArrayList;
 import java.util.List;

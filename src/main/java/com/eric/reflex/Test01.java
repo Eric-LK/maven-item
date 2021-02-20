@@ -1,10 +1,13 @@
 package com.eric.reflex;
 
+
+import com.eric.entity.Person;
 import com.eric.reflex.entity.Age;
-import com.eric.reflex.entity.Person;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /*
@@ -34,4 +37,7 @@ public class Test01 {
         method.invoke(person,age);
         System.out.println(person.getAge());
     }
+
+
+
 }
