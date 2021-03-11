@@ -26,5 +26,4 @@ public class TimeStamp {
         System.out.println(monday);
 
     }
-
 }

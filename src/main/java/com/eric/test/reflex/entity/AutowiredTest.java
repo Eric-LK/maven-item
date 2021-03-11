@@ -1,4 +1,4 @@
-package com.eric.reflex.entity;
+package com.eric.test.reflex.entity;
 
 import java.lang.annotation.*;
 

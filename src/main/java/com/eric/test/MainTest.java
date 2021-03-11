@@ -1,5 +1,6 @@
 package com.eric.test;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import com.eric.entity.Person;
@@ -14,16 +15,21 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author liuBing
  */
 public class MainTest {
+
+
     public static void main(String[] args) {
 
 
 
-        RestTemplate restTemplate = new RestTemplate();
+      /*  RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://ip.qq.com/cgi-bin/searchip?searchip1=";
         String ip = "103.145.184.106";
@@ -32,7 +38,10 @@ public class MainTest {
 
         JSONObject json = JSONObject.parseObject(result);
 
-        System.out.println(json);
+        System.out.println(json);*/
+
+        int[] param = new int[]{-1, 0, 1, 2, -1, -4};
+        System.out.println(threeSum(param));
 
     }
 
@@ -49,9 +58,9 @@ public class MainTest {
                 result.append(line);
             }
             reader.close();
-            // System.out.println(result);
+            /// System.out.println(result);
             JSONObject json = JSONObject.parseObject(result.toString());
-            // System.out.println(json);
+            /// System.out.println(json);
             String country = (String) json.get("country");
             String province = (String) json.get("province");
             String city = (String) json.get("city");
@@ -68,20 +77,71 @@ public class MainTest {
         Constructor<? extends T> constructor = aClass.getDeclaredConstructor();
         T o = constructor.newInstance();
 
-        Method setSerialMethod = aClass.getMethod("setAge",Integer.class);
+        Method setSerialMethod = aClass.getMethod("setAge", Integer.class);
 
-        setSerialMethod.invoke(o,123);
+        setSerialMethod.invoke(o, 123);
 
         return o;
     }
 
     @Test
-    public  void testTemp(){
+    public void testTemp() {
         Person person = new Person();
         System.out.println(person.toString());
 
         Person newPerson = leaveMark(person);
 
         System.out.println(newPerson.toString());
+
+        JSONArray a = new JSONArray();
+        ;
+        for (Object o : a) {
+
+        }
     }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                for (int x = j + 1; x < nums.length; x++) {
+                    if (nums[i] + nums[j] + nums[x] == 0) {
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[x]);
+
+                        Collections.sort(temp);
+
+                        boolean flag = true;
+
+                        if (!result.isEmpty()) {
+                            for (List<Integer> a : result) {
+
+                                flag = flag && twoListCompareUtil(a,temp);
+                            }
+
+                        }
+
+                        if (result.isEmpty() || flag) {
+                            result.add(temp);
+                        }
+
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    public static boolean twoListCompareUtil(List<Integer> a,List<Integer> b){
+        for (int n = 0; n < a.size(); n++) {
+            if (!a.get(n).equals(b.get(n))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

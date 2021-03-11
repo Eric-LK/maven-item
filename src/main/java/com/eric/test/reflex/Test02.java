@@ -1,7 +1,7 @@
-package com.eric.reflex;
+package com.eric.test.reflex;
 
-import com.eric.reflex.entity.AutowiredTest;
-import com.eric.reflex.entity.Person;
+import com.eric.test.reflex.entity.AutowiredTest;
+import com.eric.test.reflex.entity.Person;
 import org.junit.Test;
 
 

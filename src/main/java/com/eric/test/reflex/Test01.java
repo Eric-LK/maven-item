@@ -1,16 +1,14 @@
-package com.eric.reflex;
+package com.eric.test.reflex;
 
 
 import com.eric.entity.Person;
-import com.eric.reflex.entity.Age;
+import com.eric.test.reflex.entity.Age;
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/*
+/**
  * 通过反射侧面反映ioc的过程
  */
 public class Test01 {
@@ -37,7 +35,4 @@ public class Test01 {
         method.invoke(person,age);
         System.out.println(person.getAge());
     }
-
-
-
 }
