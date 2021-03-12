@@ -27,9 +27,10 @@ public class MainTest {
 
     public static void main(String[] args) {
 
+        Integer[] test = new Integer[2];
+        Class<Object>[] test01 = new Class[2];
 
-
-      /*  RestTemplate restTemplate = new RestTemplate();
+        /*  RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://ip.qq.com/cgi-bin/searchip?searchip1=";
         String ip = "103.145.184.106";

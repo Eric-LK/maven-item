@@ -13,6 +13,7 @@ public class ForTest {
         Person person = new Person();
 
         List<Person> people = new ArrayList<>();
+
         for (int i = 0 ; i < 10 ; i ++){
 
             person.setName(String.valueOf(i));

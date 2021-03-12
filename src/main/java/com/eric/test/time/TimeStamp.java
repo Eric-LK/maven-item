@@ -1,10 +1,13 @@
-package com.eric.test;
+package com.eric.test.time;
 
+
+import org.junit.Test;
 
 import javax.xml.crypto.Data;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 
 /**
  * @author liuBing
@@ -18,11 +21,11 @@ public class TimeStamp {
 
         System.out.println(with);
 
-        LocalDate monday1 =ld1.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        LocalDate monday1 = ld1.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
         System.out.println(monday1);
 
         LocalDate ld = LocalDate.now();
-        LocalDate monday =ld.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        LocalDate monday = ld.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
         System.out.println(monday);
 
     }

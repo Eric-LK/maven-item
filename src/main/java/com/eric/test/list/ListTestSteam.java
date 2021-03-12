@@ -1,5 +1,6 @@
 package com.eric.test.list;
 
+import org.junit.Test;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -37,5 +38,17 @@ public class ListTestSteam {
                 .collect(Collectors.toList());
 
         System.out.println(valueList.toString());
+    }
+
+    /**
+     * 当list为空数组的时候，进行stream的时候，返回的也是空数组
+     */
+    @Test
+    public void test02(){
+        List<ListEntity> listEntities = new ArrayList<>();
+
+        List<String> list=  listEntities.stream().map(ListEntity::getValue).collect(Collectors.toList());
+
+        System.out.println(list);
     }
 }
