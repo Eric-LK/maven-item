@@ -33,10 +33,10 @@ public class Date {
         Calendar todayEnd = Calendar.getInstance();
         todayEnd.add(Calendar.DATE, -1); // 几天前
 
-        todayEnd.set(Calendar.HOUR_OF_DAY, 23);
-        todayEnd.set(Calendar.MINUTE, 59);
-        todayEnd.set(Calendar.SECOND, 59);
-        todayEnd.set(Calendar.MILLISECOND, 999);
+        todayEnd.set(Calendar.HOUR_OF_DAY, 12);
+        todayEnd.set(Calendar.MINUTE, 0);
+        todayEnd.set(Calendar.SECOND, 0);
+        todayEnd.set(Calendar.MILLISECOND, 0);
         System.out.println(todayEnd.getTime().getTime());
     }
 }

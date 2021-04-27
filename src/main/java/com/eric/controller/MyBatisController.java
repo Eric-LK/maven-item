@@ -38,4 +38,11 @@ public class MyBatisController {
 
         return true;
     }
+
+    @ApiOperation("exceptionTest")
+    @GetMapping("/exceptionTest")
+    public boolean exceptionTest() {
+        throw new RuntimeException();
+        //return true;
+    }
 }

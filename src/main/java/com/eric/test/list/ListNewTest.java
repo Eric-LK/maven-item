@@ -52,6 +52,10 @@ public class ListNewTest {
                         ArrayList::new
                 )
         );
+
+       Boolean flag =  lists.stream().map(ListEntity::getValue).distinct().count() == lists.size();
+        System.out.println(flag);
+
         System.out.println("根据对象中的某个字段进行去重操作" + disUsers);
     }
 }

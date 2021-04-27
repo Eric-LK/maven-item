@@ -1,6 +1,7 @@
 package com.eric.dao;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.eric.mybatis.model.Person;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
@@ -17,7 +18,7 @@ import java.util.*;
  * @Date 2019/10/28  15:14
  */
 @Repository
-public interface PersonMapper {
+public interface PersonMapper extends BaseMapper<Person> {
 
      /*
       * @Param 多参数指定参数名字，否则会被封装成map中的param1，param2 。。。

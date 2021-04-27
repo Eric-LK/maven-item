@@ -170,6 +170,12 @@
             <version>1.2.47</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-androidpublisher</artifactId>
+            <version>v3-rev20200909-1.30.10</version>
+        </dependency>
+
 
     </dependencies>
 

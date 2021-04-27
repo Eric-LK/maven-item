@@ -38,7 +38,9 @@ public class StringTest {
 
     @Test
     public void test01() {
-
+        String a = " 123132  %s dfdf";
+        String b = String.format(a,"000");
+        System.out.print(b);
     }
 
     @Test
@@ -105,5 +107,12 @@ public class StringTest {
 
 
 
+    }
+
+    @Test
+    public void test04(){
+        String a = "1231 %S ads";
+        String b = String.format(a,"cvc");
+        System.out.println(b);
     }
 }

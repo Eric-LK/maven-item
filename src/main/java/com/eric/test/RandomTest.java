@@ -2,8 +2,10 @@ package com.eric.test;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Random;
 import java.util.TreeSet;
 
 /**
@@ -12,7 +14,7 @@ import java.util.TreeSet;
 public class RandomTest {
 
     public static void main(String[] args) {
-        for (int i = 0 ; i < 20;i++){
+        for (int i = 0; i < 20; i++) {
             System.out.println(RandomStringUtils.randomAlphanumeric(16));
         }
         /*
@@ -27,7 +29,7 @@ public class RandomTest {
 
         TreeSet<String> treeSet = new TreeSet<>();
         System.out.println(treeSet.size());
-        while (treeSet.size() < 20){
+        while (treeSet.size() < 20) {
             treeSet.add(RandomStringUtils.randomNumeric(6));
         }
         System.out.println(treeSet.size());
@@ -36,5 +38,19 @@ public class RandomTest {
         BigDecimal a = BigDecimal.valueOf(2.111);
         System.out.println(a.toString());
 
+    }
+
+    /**
+     * 获取多少之内的随机数
+     */
+    @Test
+    public void test01() {
+        int i = 0;
+        while(i <100){
+            System.out.println(new Random().nextInt(10));
+            i ++;
+        }
+
+        System.out.println(System.currentTimeMillis() - new Random().nextInt(10800000));
     }
 }
