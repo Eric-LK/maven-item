@@ -1,7 +1,7 @@
 package com.eric.test;
 
 
-import com.eric.entity.Person;
+import com.eric.dto.Person;
 import lombok.Data;
 import org.junit.Test;
 

@@ -1,10 +1,8 @@
 package com.eric.dao;
 
-import com.eric.mybatis.model.School;
-import org.springframework.stereotype.Repository;
+import com.eric.entity.School;
 
 
-@Repository
 public interface SchoolMapper {
 
     School selectSchoolById(String id);

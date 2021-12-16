@@ -1,7 +1,7 @@
 package com.eric.test.reflex;
 
 
-import com.eric.entity.Person;
+import com.eric.dto.Person;
 import com.eric.test.reflex.entity.Age;
 import org.junit.Test;
 

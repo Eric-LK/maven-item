@@ -1,4 +1,4 @@
-package com.eric.controller.param;
+package com.eric.param;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

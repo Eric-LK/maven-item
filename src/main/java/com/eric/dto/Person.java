@@ -1,4 +1,4 @@
-package com.eric.entity;
+package com.eric.dto;
 
 import lombok.Builder;
 import lombok.Data;

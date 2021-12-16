@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.eric.dao.PersonMapper">
+<mapper namespace="com.eric.dao.StudentMapper">
     <!--
     <cache readOnly="false" eviction="LRU" flushInterval="50000"/>
 
@@ -22,7 +22,7 @@
     -->
 
     <!--级联属性-->
-    <resultMap id="ResultQueryMap" type="com.eric.mybatis.model.Student" >
+    <resultMap id="ResultQueryMap" type="com.eric.entity.Student" >
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="age" property="age"/>
@@ -31,7 +31,7 @@
             property: 可以指定哪个属性是联合对象
             javaType：指定这个属性的对象类型（不能省略）
 
-            <association property="school" javaType="com.eric.mybatis.model.School" >
+            <association property="school" javaType="com.eric.entity.School" >
                 <id column="school_id" property="id"/>
                 <result column="school_name" property="name"/>
             </association>
@@ -39,8 +39,11 @@
         <!--select: 适用select指定的方法（传入column指定的这列参数的值）查出对象，并封装给property这个属性）
             column: 指定哪个值传入到这个方法中
         -->
-        <association property="school" javaType="com.eric.mybatis.model.School"
-                     select="com.eric.dao.SchoolMapper.selectSchoolById" column="sId">
+        <association column="sId"
+                     property="school"
+                     javaType="com.eric.entity.School"
+                     select="com.eric.dao.SchoolMapper.selectSchoolById">
+
         </association>
     </resultMap>
 
@@ -52,7 +55,7 @@
     </select>
 
 
-    <select id="selectPerson" resultType="com.eric.mybatis.model.Student">
+    <select id="selectPerson" resultType="com.eric.entity.Student">
         select
         /* 引用自定义sql片段 */
         <include refid="myColumn"/>
@@ -65,7 +68,7 @@
     </select>
 
     <!--  主键自增策略： useGeneratedKeys="true" keyProperty="id" -->
-    <insert id="insertPerson" parameterType="com.eric.mybatis.model.Student"
+    <insert id="insertPerson" parameterType="com.eric.entity.Student"
             useGeneratedKeys="true" keyProperty="id" >
         /* 在添加执行之前执行，适用于oracle这种数据库，没有主键自增的功能*/
         <selectKey keyProperty="age" order="BEFORE" resultType="Integer">
@@ -92,7 +95,7 @@
         </where>
     </select>
 
-    <update id="updatePerson" parameterType="com.eric.mybatis.model.Student">
+    <update id="updatePerson" parameterType="com.eric.entity.Student">
         update person
         set
         `name` = #{person.name},

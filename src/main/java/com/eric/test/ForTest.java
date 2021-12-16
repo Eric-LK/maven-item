@@ -1,6 +1,6 @@
 package com.eric.test;
 
-import com.eric.entity.Person;
+import com.eric.dto.Person;
 
 import java.util.ArrayList;
 import java.util.List;

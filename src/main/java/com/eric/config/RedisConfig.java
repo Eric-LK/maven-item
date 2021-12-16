@@ -18,7 +18,7 @@ public class RedisConfig
             RedisConnectionFactory redisConnectionFactory)
     {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        FastJson2JsonRedisSerializer<Object> redisObjectSerializer = new FastJson2JsonRedisSerializer<>(
+        RedisJsonSerializer<Object> redisObjectSerializer = new RedisJsonSerializer<>(
                 Object.class);
 
         RedisTemplate<String, String> template = new RedisTemplate<>();
