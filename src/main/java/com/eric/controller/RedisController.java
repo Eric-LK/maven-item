@@ -1,7 +1,6 @@
 package com.eric.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.eric.entity.Fileinfo;
 import com.eric.entity.NimRecordVideoDto;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;

@@ -1,0 +1,21 @@
+version: '3'
+services:
+  redis:
+    image: redis:6.2.6
+    container_name: redis
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      #设置时区使用宿主机时区,防止时间少8小时
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+      - ./redis.conf:/redis.conf
+    command: redis-server /redis.conf
+    networks:
+      dongjian:
+        ipv4_address: 172.18.0.102
+networks:
+  dongjian:
+    external: true

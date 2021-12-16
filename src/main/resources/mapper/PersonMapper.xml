@@ -22,7 +22,7 @@
     -->
 
     <!--级联属性-->
-    <resultMap id="ResultQueryMap" type="com.eric.mybatis.model.Person" >
+    <resultMap id="ResultQueryMap" type="com.eric.mybatis.model.Student" >
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="age" property="age"/>
@@ -52,7 +52,7 @@
     </select>
 
 
-    <select id="selectPerson" resultType="com.eric.mybatis.model.Person">
+    <select id="selectPerson" resultType="com.eric.mybatis.model.Student">
         select
         /* 引用自定义sql片段 */
         <include refid="myColumn"/>
@@ -65,7 +65,7 @@
     </select>
 
     <!--  主键自增策略： useGeneratedKeys="true" keyProperty="id" -->
-    <insert id="insertPerson" parameterType="com.eric.mybatis.model.Person"
+    <insert id="insertPerson" parameterType="com.eric.mybatis.model.Student"
             useGeneratedKeys="true" keyProperty="id" >
         /* 在添加执行之前执行，适用于oracle这种数据库，没有主键自增的功能*/
         <selectKey keyProperty="age" order="BEFORE" resultType="Integer">
@@ -92,7 +92,7 @@
         </where>
     </select>
 
-    <update id="updatePerson" parameterType="com.eric.mybatis.model.Person">
+    <update id="updatePerson" parameterType="com.eric.mybatis.model.Student">
         update person
         set
         `name` = #{person.name},

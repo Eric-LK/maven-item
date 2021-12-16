@@ -46,6 +46,9 @@ public class ListNewTest {
                         new ListEntity(3L, "k3", "")
                 )
         );
+
+
+
         List<ListEntity> disUsers = lists.stream().collect(
                 Collectors.collectingAndThen(
                         Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ListEntity::getKey))),

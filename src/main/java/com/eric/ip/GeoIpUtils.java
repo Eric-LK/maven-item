@@ -1,4 +1,4 @@
-package com.eric.utils;
+package com.eric.ip;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -12,6 +12,7 @@ import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.Country;
 
 /**
+ * @author lk
  * @Description: geoip工具类
  */
 public class GeoIpUtils {

@@ -1,5 +1,8 @@
 package com.eric.test;
 
+
+import com.eric.entity.Person;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.StringJoiner;
@@ -111,8 +114,14 @@ public class StringTest {
 
     @Test
     public void test04(){
-        String a = "1231 %S ads";
-        String b = String.format(a,"cvc");
-        System.out.println(b);
+        String a = "1231";
+        Person b = new Person();
+        b.setName("1231");
+        System.out.println(a.equals(b.getName()));
+    }
+
+    @Data
+    static class person{
+        private String id;
     }
 }

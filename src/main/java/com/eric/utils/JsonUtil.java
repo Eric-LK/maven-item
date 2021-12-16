@@ -24,36 +24,34 @@ import java.util.Map;
 
 
 /**
- * @author quinn
+ * @author lk
  * @version 创建时间：2018/10/18 11:21
  */
-public class JSONUtils {
-    protected static final Logger logger = LoggerFactory.getLogger(JSONUtils.class);
+public class JsonUtil {
+    protected static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 
-    private static ObjectMapper objectMapper;
+    private static final ObjectMapper OBJECT_MAPPER;
 
     static {
-        objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        OBJECT_MAPPER = new ObjectMapper();
+        OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // 设置输入时忽略JSON字符串中存在而Java对象实际没有的属性
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
 
         // 将类名称序列化到json串中
         // mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
     }
 
-    private JSONUtils() {
+    private JsonUtil() {
     }
 
     /**
      * 获取 对象映射对象
-     *
-     * @return
      */
     public static ObjectMapper getObjectMapper() {
-        return objectMapper;
+        return OBJECT_MAPPER;
     }
 
 

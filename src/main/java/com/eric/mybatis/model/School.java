@@ -8,5 +8,5 @@ import java.util.List;
 public class School {
     private String id;
     private String name;
-    private List<Person> personList;
+    private List<Student> personList;
 }

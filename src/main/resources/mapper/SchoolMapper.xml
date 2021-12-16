@@ -12,7 +12,7 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <!-- 结果集中有个list -->
-        <collection property="personList" ofType="com.eric.mybatis.model.Person">
+        <collection property="personList" ofType="com.eric.mybatis.model.Student">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
             <result column="sex" property="sex"/>
