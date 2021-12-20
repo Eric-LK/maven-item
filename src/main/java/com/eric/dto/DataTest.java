@@ -10,7 +10,6 @@ import lombok.experimental.Tolerate;
  */
 @Builder
 @Data
-
 public class DataTest {
     private String id;
 

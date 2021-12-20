@@ -2,7 +2,7 @@ package com.eric.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 
-import com.eric.utils.DateFormatUtil;
+import com.eric.utils.DateUtil;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class MybatisAutoFillMetaHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         if (metaObject.hasSetter(CREATE_TIME_FIELD)) {
-            this.strictInsertFill(metaObject, CREATE_TIME_FIELD, String.class, DateFormatUtil.getNowTime());
+            this.strictInsertFill(metaObject, CREATE_TIME_FIELD, String.class, DateUtil.getNowTime());
         }
         injectUpdateTimeField(metaObject);
     }
@@ -34,7 +34,7 @@ public class MybatisAutoFillMetaHandler implements MetaObjectHandler {
 
     private void injectUpdateTimeField(MetaObject metaObject) {
         if (metaObject.hasSetter(UPDATE_TIME_FIELD)) {
-            this.strictUpdateFill(metaObject, UPDATE_TIME_FIELD, String.class, DateFormatUtil.getNowTime());
+            this.strictUpdateFill(metaObject, UPDATE_TIME_FIELD, String.class, DateUtil.getNowTime());
         }
     }
 }
