@@ -28,7 +28,7 @@ public class FindMinTwoFromList {
             }
         }
 
-        System.out.print("minFirst:{}" + minFirst + " minSecond"+ minSecond);
+        System.out.println("minFirst:" + minFirst + " , minSecond:" + minSecond);
     }
 }
 

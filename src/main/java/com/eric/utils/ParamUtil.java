@@ -2,6 +2,8 @@ package com.eric.utils;
 
 import com.eric.annotation.FieldCanEmpty;
 import com.eric.exceptions.MyException;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
@@ -83,6 +85,21 @@ public class ParamUtil {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public static void main(String[] args) {
+        TestEntity testEntity = new TestEntity("123",null,null);
+        String s = fieldStringParamCheck(testEntity);
+        System.out.println(s);
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class TestEntity{
+        private String id;
+        private String name;
+        @FieldCanEmpty
+        private String age;
     }
 
     /**

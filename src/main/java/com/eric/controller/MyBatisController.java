@@ -2,12 +2,14 @@ package com.eric.controller;
 
 import com.eric.dao.StudentMapper;
 import com.eric.entity.Student;
+import com.eric.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,6 +23,8 @@ public class MyBatisController {
 
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private StudentService studentService;
 
     @ApiOperation("insertStudent")
     @GetMapping("/insertStudent")
@@ -44,5 +48,14 @@ public class MyBatisController {
     public boolean exceptionTest() {
         throw new RuntimeException();
         //return true;
+    }
+
+
+
+
+    @ApiOperation("list")
+    @GetMapping("list")
+    public void list(@RequestParam Integer id){
+        studentService.listTest(id);
     }
 }

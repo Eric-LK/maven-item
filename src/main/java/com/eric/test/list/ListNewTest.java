@@ -1,13 +1,9 @@
 package com.eric.test.list;
 
+import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -28,8 +24,8 @@ public class ListNewTest {
         Collections.sort(stringList);
 
         System.out.print(stringList);
-
-        List<String> a = new ArrayList<>(Arrays.asList("123", "123"));
+        Arrays.asList("123", "123");
+        List<String> a = new ArrayList<>();
     }
 
 
@@ -60,5 +56,33 @@ public class ListNewTest {
         System.out.println(flag);
 
         System.out.println("根据对象中的某个字段进行去重操作" + disUsers);
+    }
+
+
+    @Test
+    public void test1(){
+        List<ListEntity> lists = new ArrayList<>(
+                Arrays.asList(
+                        new ListEntity(1L, "k1", "v1"),
+                        new ListEntity(2L, "k2", "v1"),
+                        new ListEntity(3L, "k3", "v2"),
+                        new ListEntity(3L, "k3", "")
+                )
+        );
+
+
+        List<ListEntity> lists1 =null;
+        System.out.println(lists.size());
+
+        System.out.println(lists.get(lists.size() -1));
+
+        // lists.stream().filter(Objects::nonNull).reduce(0L,Long::sum).getValue();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(ImmutableMap.of(
+                "token", 123,
+                "123","213213L")
+        );
     }
 }
