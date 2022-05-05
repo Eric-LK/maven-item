@@ -1,6 +1,7 @@
 package com.eric.letcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,12 +10,9 @@ import java.util.List;
 public class FindMinTwoFromList {
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        list.add(123);
-        list.add(2);
-        list.add(32);
-        list.add(43);
-        list.add(10);
+        List<Integer> list = Arrays.asList(
+                0,1,2,3,4,5
+        );
 
         Integer minFirst = list.get(0) > list.get(1) ? list.get(1) : list.get(0);
         Integer minSecond = list.get(0) < list.get(1) ? list.get(1) : list.get(0);

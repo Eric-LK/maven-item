@@ -7,30 +7,24 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author liuBing
  */
-public class TimerTask {
+public class MyTimerTaskTest {
 
     public static void main(String[] args) {
-
-        new Timer().schedule(new java.util.TimerTask() {
-
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-
                 System.out.println("123");
-
             }
         }, 10000);
-
-
-
     }
 
     @Test
-    public void test(){
+    public void test() {
         // 今天
         LocalDate ld = LocalDate.now();
         // 上周一

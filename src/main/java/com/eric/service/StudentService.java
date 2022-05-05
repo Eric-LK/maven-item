@@ -18,12 +18,8 @@ import java.util.List;
 public class StudentService extends ServiceImpl<StudentMapper, Student> {
 
     public void listTest(Integer id){
-
         List<Student> list = lambdaQuery().eq(Student::getId, id).list();
         log.info("测试，如果list查不到，返回的是：{}",list);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis() / 1000 + 60 * 60 * 24 * 365 * 5 );
+        // 返回的是 size 为 0 的 list，不是null
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.http.HttpMethod;
 import java.util.Map;
 
 /**
- * @description：
+ * @description： hutool http请求工具类
  * @Author: liuBing
  * @DateTime: 2022/5/5 14:48
  */

@@ -35,9 +35,9 @@ public class DateUtil {
     static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
     /**
-     * 获取当前时间字符串
+     * 获取当前时间
      *
-     * @return 当前时间字符串
+     * @return 当前时间
      */
     public static String getNowTime() {
         return dateTimeFormatter.format(LocalDateTime.now());

@@ -40,7 +40,5 @@ public class IpCountryTest {
         });
 
         System.out.println("success : " + success + "failed : " + failed);
-
-
     }
 }

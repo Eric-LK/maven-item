@@ -22,17 +22,14 @@ public class IPUtils {
      */
     private static DatabaseReader reader;
 
-    /**
+    /*
      * 静态代码块，保证项目启动只获取一次文件
      */
     static {
-
-        File database = null;
-
         try {
             //绝对路径读取文件方式
             // /Users/bssm/yuelanProject/maven-item/GeoLite2-ASN.mmdb
-            database = new File("/Users/bssm/yuelanProject/maven-item/Country.mmdb");
+            File database = new File("/Users/bssm/yuelanProject/maven-item/Country.mmdb");
 
             // 通过 InputStream 流式读取文件，目的解决无法通过File方式读取jar包内的文件的问题·1
             // database = getFile("GeoLite2-Country.mmdb","GeoLite2-Country.mmdb");
@@ -47,25 +44,25 @@ public class IPUtils {
 
     /**
      * 解析IP
+     *
      * @param ip
      * @return
      */
-    public static IPEntity getIPMsg(String ip){
+    public static IPEntity getIPMsg(String ip) {
 
         IPEntity msg = new IPEntity();
 
         try {
             InetAddress ipAddress = InetAddress.getByName(ip);
-             CountryResponse response = reader.country(ipAddress);
+            CountryResponse response = reader.country(ipAddress);
 
             // AsnResponse asn = reader.asn(ipAddress);
-
 
 
             //  CityResponse city = reader.city(ipAddress);
             // Country country = city.getCountry();
 
-             Country country = response.getCountry();
+            Country country = response.getCountry();
             /*Subdivision subdivision = response.getMostSpecificSubdivision();
             City city = response.getCity();
             Postal postal = response.getPostal();
@@ -92,10 +89,9 @@ public class IPUtils {
 
     /**
      * 读取classpath下的文件
-     * @param fileName 原文件全名
-     * @param newFileName  缓存的新文件的名称
-     * @return
-     * @throws IOException
+     *
+     * @param fileName    原文件全名
+     * @param newFileName 缓存的新文件的名称
      */
     public static File getFile(String fileName, String newFileName) throws IOException {
         //读取 ClassPath 路径下指定资源的输入流
@@ -104,17 +100,15 @@ public class IPUtils {
 
         File file = new File(newFileName);
 
-        inputstreamToFile(inputStream, file);
+        inputStreamToFile(inputStream, file);
 
         return file;
     }
 
     /**
      * InputStream -> File
-     * @param inputStream
-     * @param file
      */
-    private static void inputstreamToFile(InputStream inputStream,File file) {
+    private static void inputStreamToFile(InputStream inputStream, File file) {
         try {
             OutputStream os = new FileOutputStream(file);
             int bytesRead = 0;

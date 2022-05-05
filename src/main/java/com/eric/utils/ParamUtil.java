@@ -87,20 +87,6 @@ public class ParamUtil {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        TestEntity testEntity = new TestEntity("123",null,null);
-        String s = fieldStringParamCheck(testEntity);
-        System.out.println(s);
-    }
-
-    @Data
-    @AllArgsConstructor
-    public static class TestEntity{
-        private String id;
-        private String name;
-        @FieldCanEmpty
-        private String age;
-    }
 
     /**
      * 实体参数为空校验（直接抛出异常的版本）

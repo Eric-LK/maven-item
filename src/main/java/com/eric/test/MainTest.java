@@ -29,17 +29,6 @@ public class MainTest {
         Integer[] test = new Integer[2];
         Class<Object>[] test01 = new Class[2];
 
-        /*  RestTemplate restTemplate = new RestTemplate();
-
-        String url = "http://ip.qq.com/cgi-bin/searchip?searchip1=";
-        String ip = "103.145.184.106";
-
-        String result = restTemplate.postForObject(url + ip, null, String.class);
-
-        JSONObject json = JSONObject.parseObject(result);
-
-        System.out.println(json);*/
-
         int[] param = new int[]{-1, 0, 1, 2, -1, -4};
         System.out.println(threeSum(param));
 
