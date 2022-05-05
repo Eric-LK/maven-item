@@ -1,5 +1,7 @@
 package com.eric.utils;
 
+import lombok.SneakyThrows;
+
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -19,7 +21,13 @@ public class DateUtil {
     }
 
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    /**
+     * 一天的毫秒数
+     */
     public static final Long ONE_DAY_MILLION_SECOND = 86400000L;
+    /**
+     * 一分钟的毫秒数
+     */
     public static final Long ONE_MINUTE_SECOND = 60000L;
 
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -34,7 +42,6 @@ public class DateUtil {
     public static String getNowTime() {
         return dateTimeFormatter.format(LocalDateTime.now());
     }
-
 
 
     /**
@@ -63,6 +70,9 @@ public class DateUtil {
         return timestamp > 0L ? timeFormat.format(new Date(timestamp)) : "格式错误";
     }
 
+    /**
+     * 根据时间戳获取时间
+     */
     public static String getDateTimeByTimeStamp(Long timestamp) {
         if (timestamp == null) {
             return "";
@@ -70,8 +80,21 @@ public class DateUtil {
         return timestamp > 0L ? dateTimeFormat.format(new Date(timestamp)) : "格式错误";
     }
 
+    /**
+     * 根据时间获取时间戳
+     *
+     * @param time 时间 （格式："yyyy.MM.dd HH:mm:ss"）
+     * @return 时间对应的时间戳
+     */
+    @SneakyThrows
+    public static Long getTimeStampByTime(String time) {
+        return dateTimeFormat.parse(time).getTime();
+    }
 
-    //获得本周一0点时间
+
+    /**
+     * 获得本周一0点时间
+     */
     public static long getThisWeekMondayTimeStamp() {
         // 今天
         LocalDate ld = LocalDate.now();
@@ -145,10 +168,4 @@ public class DateUtil {
         return (second / 60 / 60 / 24) + "d" + (second / 60 / 60 % 24) + "h" + (second / 60 % 60) + "m" + (second % 60) + "s";
     }
 
-    public static String secondToHourMinutesAndSecond(Long second) {
-        if (second == null){
-            return "--";
-        }
-        return secondToHourMinutesAndSecond(second.intValue());
-    }
 }

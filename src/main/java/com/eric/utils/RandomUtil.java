@@ -1,5 +1,6 @@
 package com.eric.utils;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -31,5 +32,28 @@ public class RandomUtil {
             int num = r.nextInt(100) + 1;
             System.out.println(num);
         }
+
+
+
+    }
+
+
+    /**
+     * 获取百分比(保留两位小数)
+     *
+     * @param molecule    分子
+     * @param denominator 分母
+     * @return 百分比
+     */
+    public static String getPercentage(Double molecule, Double denominator) {
+        return new DecimalFormat("#0.00").format(molecule / denominator) + "%";
+    }
+
+    public static String getPercentageByFour(Double number) {
+        return new DecimalFormat("#0.0000").format(number * 100) + "%";
+    }
+
+    public static String getPercentageByFourNoPercentSign(Double number) {
+        return new DecimalFormat("#0.0000").format(number * 100) ;
     }
 }

@@ -1,4 +1,4 @@
-package com.eric.utils;
+package com.eric.utils.file;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,8 @@ import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * @description： 文件工具
@@ -351,4 +353,120 @@ public class FileUtil {
         File file = new File(filePath + fileName);
         new PrintStream(new FileOutputStream(file)).println(value);
     }
+
+    /**
+     * 下载文件
+     *
+     * @param response response
+     * @param filePath 文件路径
+     * @param fileName 文件名称
+     */
+    @SneakyThrows
+    public static void downloadFile(HttpServletResponse response, String filePath, String fileName) {
+        // 设置输出的格式
+        response.reset();
+        response.setContentType("bin");
+        response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        // 循环取出流中的数据
+        byte[] b = new byte[100];
+        int len;
+        // 读到流中
+        try (InputStream inStream = new FileInputStream(filePath)) {
+            while ((len = inStream.read(b)) > 0) {
+                response.getOutputStream().write(b, 0, len);
+            }
+        } catch (IOException e) {
+            log.error("文件下载失败", e);
+        }
+    }
+
+    /**
+     * 下载文件
+     *
+     * @param response response
+     * @param path     文件路径
+     */
+    @SneakyThrows
+    public static HttpServletResponse download(HttpServletResponse response, String path) {
+
+        // path是指欲下载的文件的路径。
+        File file = new File(path);
+        // 取得文件名。
+        String filename = file.getName();
+        // 取得文件的后缀名。
+        // String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+
+        // 以流的形式下载文件。
+        InputStream fis = new BufferedInputStream(new FileInputStream(path));
+        byte[] buffer = new byte[fis.available()];
+        fis.read(buffer);
+        fis.close();
+        // 清空response
+        response.reset();
+        // 设置response的Header
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
+        response.addHeader("Content-Length", "" + file.length());
+        OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+        response.setContentType("application/octet-stream");
+        toClient.write(buffer);
+        toClient.flush();
+        toClient.close();
+
+        return response;
+    }
+
+
+    /**
+     * 获取路径下的文件那时间降序排列
+     *
+     * @param filePath 路径
+     * @return 文件集合
+     */
+    public static File[] orderByDate(String filePath) {
+        File file = new File(filePath);
+        File[] files = file.listFiles();
+        if (files != null) {
+            Arrays.sort(files, new Comparator<File>() {
+                public int compare(File f1, File f2) {
+                    long diff = f1.lastModified() - f2.lastModified();
+                    if (diff > 0)
+                        return -1;
+                    else if (diff == 0)
+                        return 0;
+                    else
+                        // 如果 if 中修改为 返回 -1 同时此处修改为返回  1  排序就会是递减
+                        // 如果 if 中修改为 返回  1 同时此处修改为返回 -1  排序就会是递增
+                        return 1;
+                }
+
+                public boolean equals(Object obj) {
+                    return true;
+                }
+            });
+        }
+        return files;
+    }
+
+    /**
+     * 文件重命名
+     *
+     * @param oldFileName 旧名字
+     * @param newFileName 新名字
+     * @throws IOException
+     */
+    public static void changeFileName(String oldFileName, String newFileName) throws IOException {
+        // 旧的文件或目录
+        File oldName = new File(oldFileName);
+        // 新的文件或目录
+        File newName = new File(newFileName);
+        if (newName.exists()) {  //  确保新的文件名不存在
+            throw new java.io.IOException("file exists");
+        }
+        if (oldName.renameTo(newName)) {
+            System.out.println("已重命名");
+        } else {
+            System.out.println("Error");
+        }
+    }
+
 }

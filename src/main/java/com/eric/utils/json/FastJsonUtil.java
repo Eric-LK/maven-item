@@ -28,11 +28,17 @@ public class FastJsonUtil {
 
     private FastJsonUtil(){}
 
+    /**
+     * Object -> Map
+     */
     public static Map<Object, Object> beanToMap(Object bean) {
         return bean == null ? null : JSON.parseObject(JSON.toJSONString(bean), new TypeReference<>() {});
     }
 
 
+    /**
+     * list -> JSONArray
+     */
     public static JSONArray listToListJson(List<Object> list){
         return JSONObject.parseArray(JSON.toJSONString(list));
     }
